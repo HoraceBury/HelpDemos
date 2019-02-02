@@ -10,8 +10,6 @@ Individual demos put together to help out on the Corona SDK forums.
 
 [Click here for the Pendulum demo.](https://horacebury.github.io/HelpDemos/Pendulum/web/)
 
-[Click here for the PinchZoomRotate demo.](https://horacebury.github.io/HelpDemos/PinchZoomRotate/web/)
-
 [Click here for the Piston demo.](https://horacebury.github.io/HelpDemos/Piston/web/)
 
 [Click here for the RowsAndColumns demo.](https://horacebury.github.io/HelpDemos/RowsAndColumns/web/)
