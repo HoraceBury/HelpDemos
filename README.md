@@ -12,6 +12,8 @@ Individual demos put together to help out on the Corona SDK forums.
 
 [Click here for the Piston demo.](https://horacebury.github.io/HelpDemos/Piston/web/)
 
+[Click here for the PistonJoint demo.](https://horacebury.github.io/HelpDemos/PistonJoint/web/index.html)
+
 [Click here for the PlatformAnchor demo.](https://horacebury.github.io/HelpDemos/PlatformAnchor/web/index.html)
 
 [Click here for the RowsAndColumns demo.](https://horacebury.github.io/HelpDemos/RowsAndColumns/web/)

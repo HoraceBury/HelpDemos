@@ -1,24 +1,50 @@
--- snow example
+-- piston demo
 
-display.setStatusBar( display.HiddenStatusBar )
+local physics = require("physics")
+physics.start()
+physics.setGravity(0,10)
+physics.setDrawMode("hybrid")
 
-display.setDefault( "background", .05,.05,.2 )
-
-local snowGroup = display.newGroup()
-
-local function snowDrop( flake )
-	if (flake == nil) then
-		local flake = display.newCircle( snowGroup, 0, 0, 2 )
-		flake:setFillColor( .9,.9,.9 )
-		snowDrop( flake )
-	else
-		flake.x, flake.y = math.random( 0, display.actualContentWidth ), -10
-		local xTarget, yTarget = math.random( 0, display.actualContentWidth ), display.actualContentHeight+10
-		
-		transition.to( flake, { x=xTarget, y=yTarget, delay=math.random( 0, 5000 ), time=math.random( 3000, 10000 ), tag="snow", onComplete=snowDrop } )
-	end
+local function createAnchor()
+	local group = display.newGroup()
+	group.x, group.y = 400, 900
+	physics.addBody( group, "static", { radius=10, isSensor=true, density=10 } )
+	return group
 end
 
-for i=1, 50 do
-	snowDrop()
+local function createPlatform()
+	local group = display.newGroup()
+	group.x, group.y = 400, 800
+	local grass = display.newRect( group, 0, 0, 200, 25 )
+	grass.fill = {0,1,0}
+	physics.addBody( group, "dynamic", { bounce=.8, density=.1 } )
+	return group
 end
+
+local function piston( anchor, platform )
+	return physics.newJoint( "piston", anchor, platform, platform.x, platform.y, 1, 0 )
+end
+
+local function startPiston( pjoint )
+	pjoint.isMotorEnabled = true
+	pjoint.motorSpeed = 100
+	pjoint.motorForce = 100
+	pjoint.maxMotorForce = 10
+end
+
+local function dropBall( x, y )
+	local group = display.newGroup()
+	group.x, group.y = 400, 100
+	local ball = display.newCircle( group, 0, 0, 50 )
+	ball.fill = {0,0,1}
+	physics.addBody( group, "dynamic", { radius=50, bounce=.8, density=.1 } )
+	return group
+end
+
+local anchor = createAnchor()
+local platform = createPlatform()
+local joint = piston( anchor, platform )
+
+dropBall()
+
+startPiston( joint )
